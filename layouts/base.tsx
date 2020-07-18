@@ -33,6 +33,9 @@ export const BaseLayout: FC<{ title: string }> = ({ children, title }) => {
         img {
           max-width: 100%;
         }
+        .snipcart-modal__container {
+          z-index: 1500;
+        }
       `}</style>
     </ThemeProvider>
   );
