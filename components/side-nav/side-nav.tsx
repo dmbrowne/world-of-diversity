@@ -3,6 +3,7 @@ import { FC, useState } from "react";
 import styled from "styled-components";
 import TextLogoIcon from "@components/navbar/text-logo";
 import { Box } from "grommet";
+import MenuItems from "@components/navbar/menu-items";
 
 const styles = {
   bmBurgerButton: {
@@ -74,7 +75,7 @@ const SideNav: FC = ({ children }) => {
       </BurgerBar>
       <Menu {...menuProps}>
         <TextLogoIcon />
-        {children}
+        <MenuItems onViewCart={() => setIsOpen(false)} />
       </Menu>
       <style jsx global>{`
         .sidenav a {

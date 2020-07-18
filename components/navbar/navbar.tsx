@@ -20,9 +20,7 @@ const Navbar: FC<{ transparency?: number }> = ({ transparency = 1 }) => {
   ]);
 
   return isTabletAndSmaller ? (
-    <SideNav>
-      <MenuItems />
-    </SideNav>
+    <SideNav />
   ) : (
     <Box background={backgroundColor} pad={{ vertical: "small" }}>
       <ContentContainer align="center" justify="between" direction="row" size="large">
