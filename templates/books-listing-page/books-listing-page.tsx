@@ -1,8 +1,10 @@
-import React, { useContext, FC } from "react";
+import React, { useContext, FC, useEffect, useState } from "react";
 import { Image as DatoImage, ResponsiveImageType } from "react-datocms";
 import { Grid, Box, Heading, Paragraph, Button, ResponsiveContext, Text } from "grommet";
 import styled from "styled-components";
 import PageHeader from "@components/page-header";
+import { Snackbar } from "@material-ui/core";
+import { Close, FormClose } from "grommet-icons";
 
 interface Props {
   title: string;
@@ -28,6 +30,7 @@ const SBookCoverContainer = styled(Box)`
 
 const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
   const screensize = useContext(ResponsiveContext);
+  const [showCartAdded, setShowCartAdded] = useState<string | void>();
   const colCount = (() => {
     switch (screensize) {
       case "xlarge":
@@ -39,6 +42,20 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
         return 1;
     }
   })();
+
+  useEffect(() => {
+    const { Snipcart } = window as any;
+    Snipcart.ready.then(() => {
+      Snipcart.events.on("item.added", (cartItem: any) => {
+        console.log(cartItem);
+        setShowCartAdded(`"${cartItem.name}" added to cart`);
+      });
+      Snipcart.events.on("item.updated", (cartItem: any) => {
+        console.log("helllo");
+        setShowCartAdded("Cart updated");
+      });
+    });
+  }, []);
 
   return (
     <>
@@ -74,7 +91,7 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
                 <Paragraph children={book.excerpt} />
                 <Box direction="row" gap="xsmall" align="center" margin={{ bottom: "xsmall" }}>
                   <Text children="Price:" size="small" />
-                  <Text children={`£${book.price.toFixed(2)}`} />
+                  <Text color="neutral-1" children={`£${book.price.toFixed(2)}`} />
                 </Box>
                 <Box round={{ size: "xsmall" }} elevation="small" alignSelf="start" width={{ min: "250px" }}>
                   <Button className="snipcart-add-item" {...buyDetails} fill={true} children="Purchase" primary />
@@ -84,6 +101,25 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
           );
         })}
       </Grid>
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        open={!!showCartAdded}
+        autoHideDuration={4000}
+        onClose={() => setShowCartAdded()}
+        message={showCartAdded || "Item added to cart"}
+        action={
+          <Box align="center" direction="row">
+            <Button size="small" className="snipcart-checkout" label="View cart" color="brand" />
+            <Button
+              style={{ paddingRight: 0 }}
+              size="small"
+              aria-label="close"
+              icon={<FormClose />}
+              onClick={() => setShowCartAdded()}
+            />
+          </Box>
+        }
+      />
     </>
   );
 };
