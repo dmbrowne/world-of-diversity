@@ -21,12 +21,9 @@ interface Props {
 
 const SBookCoverContainer = styled(Box)`
   height: 290px;
+  width: 200px;
   flex-shrink: 0;
   border: 2px solid ${(props) => props.theme.global?.colors?.["light-6"]?.toString()};
-
-  img {
-    height: 100%;
-  }
 `;
 
 const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
@@ -50,7 +47,7 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
         columns={{ count: colCount, size: "auto" }}
         justify="start"
         gap="small"
-        margin={{ horizontal: "medium", top: "large" }}
+        margin={{ horizontal: "medium", vertical: "large" }}
       >
         {books.map((book) => {
           const buyDetails = {
@@ -62,7 +59,13 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
             "data-item-image": book.frontCover?.url,
           };
           return (
-            <Box key={book.id} direction="row" as="article" gap="small">
+            <Box
+              key={book.id}
+              direction={screensize === "small" ? "column" : "row"}
+              as="article"
+              gap="small"
+              margin={{ top: "small", bottom: "medium" }}
+            >
               <SBookCoverContainer>
                 {book?.frontCover?.responsiveImage && <DatoImage data={book.frontCover.responsiveImage} />}
               </SBookCoverContainer>

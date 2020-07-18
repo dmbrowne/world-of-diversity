@@ -29,11 +29,12 @@ export const SMobileHeroHeading = styled(Heading).attrs({ level: 1 })`
 
 export const SHeroHeading = styled(SMobileHeroHeading)`
   text-align: left;
-  top: 30px;
+  top: 1vw;
   left: 24px;
   position: absolute;
   z-index: 2;
   max-width: 400px;
+  margin-top: 0;
 `;
 
 export const SSection = styled(Box).attrs((props) => ({

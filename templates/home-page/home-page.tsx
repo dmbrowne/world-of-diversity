@@ -53,8 +53,6 @@ const HomePage: FC<HomePageProps> = (props) => {
       case "xlarge":
       case "large":
         return "large";
-      case "tablet":
-        return "small";
       default:
         return "medium";
     }
