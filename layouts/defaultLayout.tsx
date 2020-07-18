@@ -3,7 +3,6 @@ import { Box } from "grommet";
 import Navbar from "@components/navbar";
 import Footer from "@components/footer";
 import BaseLayout from "./base";
-import SideNav from "@components/side-nav";
 
 const DefaultLayout: FC = ({ children }) => {
   return (
