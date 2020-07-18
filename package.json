@@ -10,6 +10,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "@testing-library/dom": "^7.20.0",
     "@testing-library/react": "^10.4.5",
     "@types/react-dom": "^16.9.8",
