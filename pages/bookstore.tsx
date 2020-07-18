@@ -60,14 +60,7 @@ const BooksStore: FC<Props> = ({ data }) => {
 
   return (
     <DefaultLayout>
-      <Head>
-        <link rel="preconnect" href="https://app.snipcart.com" />
-        <link rel="preconnect" href="https://cdn.snipcart.com" />
-        <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.17/default/snipcart.css" />
-      </Head>
       <BooksListingPage title={title} subtitle={subtitle} books={data.allBooks} />
-      <div hidden id="snipcart" data-api-key={process.env.SNIPCART_API_KEY} data-config-add-product-behavior="none" />
-      <script src="https://cdn.snipcart.com/themes/v3.0.17/default/snipcart.js" />
     </DefaultLayout>
   );
 };

@@ -15,9 +15,14 @@ export const BaseLayout: FC<{ title: string }> = ({ children, title }) => {
             rel="stylesheet"
           />
           <link rel="icon" href="/favicon.ico" />
+          <link rel="preconnect" href="https://app.snipcart.com" />
+          <link rel="preconnect" href="https://cdn.snipcart.com" />
+          <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.17/default/snipcart.css" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         {children}
+        <div hidden id="snipcart" data-api-key={process.env.SNIPCART_API_KEY} data-config-add-product-behavior="none" />
+        <script src="https://cdn.snipcart.com/themes/v3.0.17/default/snipcart.js" />
       </Grommet>
       <style jsx global>{`
         html,
