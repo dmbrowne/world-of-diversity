@@ -24,7 +24,7 @@ const Navbar: FC<{ transparency?: number }> = ({ transparency = 1 }) => {
         </div>
         <Box as="nav" align="center" direction="row">
           <SAnchor href="/about" color="dark-1" children="About" />
-          <SAnchor href="/books-store" color="dark-1" children="Books" />
+          <SAnchor href="/bookstore" color="dark-1" children="Books" />
           <Button
             color="dark-1"
             icon={<Shop />}
