@@ -1,17 +1,16 @@
-import { Anchor } from "grommet";
+import { Anchor, Text } from "grommet";
 import styled from "styled-components";
 
-export const SAnchor = styled(Anchor).attrs({
+export const SAnchor = styled(Anchor).attrs((props) => ({
   color: "dark-1",
-  margin: { horizontal: "medium" },
-})`
+  margin: props.margin || { horizontal: "medium" },
+}))`
   font-weight: 300;
   font-size: 1.125rem;
 `;
 
-export const Logo = styled.span`
+export const Logo = styled(Text)`
   font-family: "Rammetto One";
-  font-size: 24px;
   color: #fff;
 
   @supports (-webkit-text-stroke: 1px black) {
