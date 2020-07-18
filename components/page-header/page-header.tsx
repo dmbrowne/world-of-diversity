@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Heading } from "grommet";
 
 const SPageHeader = styled.div`
-  height: 280px;
-  background: url(/assets/images/clouds-bg.svg) no-repeat center/cover;
+  height: 350px;
+  background: url(/assets/images/clouds-bg.svg) no-repeat center bottom/cover;
   display: flex;
   align-items: center;
   justify-content: center;
