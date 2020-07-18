@@ -1,7 +1,7 @@
 import { FC, forwardRef } from "react";
 import styled from "styled-components";
 import { Box, Heading, BoxProps, BoxTypes } from "grommet";
-import ContentContainer from "../content-container";
+import ContentContainer from "@components/content-container";
 
 export const SImageContainer = styled(Box as FC<BoxProps & { centerImg: boolean }>)`
   width: 100%;
@@ -44,10 +44,10 @@ export const SSection = styled(Box).attrs((props) => ({
 }))`
   min-height: 0;
 
-  @media (min-width: ${({ theme }) => `${theme.global.breakpoints.tablet.value}px`}) {
+  @media (min-width: ${({ theme }) => `${theme.global?.breakpoints?.tablet?.value}px`}) {
     min-height: 400px;
   }
-  @media (min-width: ${({ theme }) => `${theme.global.breakpoints.large.value}px`}) {
+  @media (min-width: ${({ theme }) => `${theme.global?.breakpoints?.large?.value}px`}) {
     min-height: 50vh;
   }
 `;
