@@ -17,9 +17,23 @@ type Props = ImageProps & {
 };
 
 const Avatar: FC<Props> = ({ responsiveImage, src, size = "medium" }) => {
+  const imgComponent = (() => {
+    if (responsiveImage) return <DatoImage data={responsiveImage} />;
+    if (src) return <Image src={src} />;
+    return null;
+  })();
+
   return (
-    <Box align="center" justify="center" overflow="hidden" round="full" width={size} height={size}>
-      {!!responsiveImage ? <DatoImage data={responsiveImage} /> : <Image src={src} />}
+    <Box
+      align="center"
+      justify="center"
+      overflow="hidden"
+      round="full"
+      width={size}
+      height={size}
+      background="neutral-1"
+    >
+      {imgComponent}
     </Box>
   );
 };

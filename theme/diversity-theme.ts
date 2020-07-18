@@ -60,14 +60,8 @@ export const diversityTheme: ThemeType = {
     },
     drop: {
       background: "rgb(255, 242, 201)",
-      shadow: "0px 3px 8px rgba(68, 68, 68, 0.5)",
       border: {
         radius: "2px",
-      },
-    },
-    input: {
-      border: {
-        radius: "4px",
       },
     },
     font: {
@@ -76,6 +70,11 @@ export const diversityTheme: ThemeType = {
         font-style: normal;
         font-weight: 300;
       `,
+    },
+    control: {
+      border: {
+        radius: "4px",
+      },
     },
   },
   layer: {
