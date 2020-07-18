@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { ResponsiveImageType, Image as DatoImage } from "react-datocms";
-import { Box, Button } from "grommet";
+import { Box, Button, ResponsiveContext } from "grommet";
 import Slider, { Settings as SlickSettings } from "react-slick";
 import styled from "styled-components";
 import PageHeader from "@components/page-header";
@@ -15,6 +15,7 @@ const SContent = styled(Box)`
   h3 {
     text-align: center;
     margin: 24px 0 40px;
+    line-height: 1em;
   }
 `;
 
@@ -57,6 +58,8 @@ const slickSettings: SlickSettings = {
 };
 
 const AboutPage: FC<Props> = ({ title, subtitle, intro, authorQuote, content, authorGallery }) => {
+  const isMobile = useContext(ResponsiveContext) === "small";
+
   return (
     <>
       <PageHeader title={title} subtitle={subtitle} />
@@ -64,7 +67,13 @@ const AboutPage: FC<Props> = ({ title, subtitle, intro, authorQuote, content, au
         <SContent pad={{ top: "medium", bottom: "large" }}>
           {intro && <div dangerouslySetInnerHTML={{ __html: intro }} />}
           {authorQuote && authorQuote.quote && (
-            <Box direction="row" align="center" gap="large" pad={{ left: "xlarge" }} margin={{ vertical: "large" }}>
+            <Box
+              direction={isMobile ? "column" : "row"}
+              align="center"
+              gap="large"
+              pad={{ left: "xlarge" }}
+              margin={{ vertical: "large" }}
+            >
               {authorQuote.image && (
                 <div>
                   <Avatar responsiveImage={authorQuote.image.responsiveImage} size="200px" />
