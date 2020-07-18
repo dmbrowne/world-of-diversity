@@ -17,6 +17,7 @@
     "babel-plugin-styled-components": "^1.10.7",
     "graphql-request": "^2.0.0",
     "grommet": "^2.14.0",
+    "grommet-icons": "^4.4.0",
     "next": "^9.3.3",
     "react": "^16.13.0",
     "react-datocms": "^1.2.5",
