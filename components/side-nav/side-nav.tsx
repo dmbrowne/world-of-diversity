@@ -1,10 +1,10 @@
 import { bubble as Menu } from "react-burger-menu";
-import { FC } from "react";
+import { FC, useState } from "react";
 import styled from "styled-components";
 import TextLogoIcon from "@components/navbar/text-logo";
 import { Box } from "grommet";
 
-var styles = {
+const styles = {
   bmBurgerButton: {
     position: "fixed",
     width: "30px",
@@ -36,7 +36,7 @@ var styles = {
     width: "100%",
   },
   bmMorphShape: {
-    fill: "#373a47",
+    fill: "#f1f1f1",
   },
   // bmItemList: {
   //   color: "#b8b7ad",
@@ -60,12 +60,19 @@ const BurgerBar = styled(Box)`
 `;
 
 const SideNav: FC = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const menuProps = {
+    isOpen,
+    styles,
+    onOpen: () => setIsOpen(true),
+    onClose: () => setIsOpen(false),
+  };
   return (
     <div className="sidenav">
       <BurgerBar justify="center" pad={{ left: "58px" }}>
         <TextLogoIcon />
       </BurgerBar>
-      <Menu isOpen={true} styles={styles}>
+      <Menu {...menuProps}>
         <TextLogoIcon />
         {children}
       </Menu>
