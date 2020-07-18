@@ -16,6 +16,7 @@
     "@types/react-dom": "^16.9.8",
     "babel-plugin-inline-react-svg": "^1.1.1",
     "babel-plugin-styled-components": "^1.10.7",
+    "color": "^3.1.2",
     "graphql-request": "^2.0.0",
     "grommet": "^2.14.0",
     "grommet-icons": "^4.4.0",
@@ -24,6 +25,7 @@
     "react": "^16.13.0",
     "react-datocms": "^1.2.5",
     "react-dom": "^16.13.0",
+    "react-slick": "^0.27.0",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
@@ -32,9 +34,11 @@
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/react": "^5.3.19",
+    "@types/color": "^3.0.1",
     "@types/jest": "^26.0.4",
     "@types/node": "^14.0.22",
     "@types/react": "^16.9.42",
+    "@types/react-slick": "^0.23.4",
     "@types/styled-components": "^5.1.1",
     "babel-loader": "^8.1.0",
     "tslint": "^6.1.2",
