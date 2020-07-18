@@ -148,4 +148,4 @@ export const diversityTheme: ThemeType = {
   },
 };
 
-export default deepFreeze(diversityTheme);
+export default deepMerge(grommet, diversityTheme);
