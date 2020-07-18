@@ -42,10 +42,11 @@ export const diversityTheme: ThemeType = {
       "neutral-5": "#81B1EC",
     },
     breakpoints: {
-      small: { value: 500 },
-      medium: { value: 768 },
-      large: { value: 1024 },
-      largeDesktop: { value: 1440 },
+      small: { value: 600 },
+      tablet: { value: 768 },
+      medium: { value: 1024 },
+      large: { value: 1440 },
+      xlarge: {},
     },
     elevation: {
       light: {
