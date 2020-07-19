@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { FC } from "react";
 import { ResponsiveImageType } from "react-datocms";
 import DefaultLayout from "@layouts/defaultLayout";
