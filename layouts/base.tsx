@@ -11,7 +11,7 @@ export const BaseLayout: FC<{ title: string }> = ({ children, title }) => {
         <Head>
           <title>{title}</title>
           <link
-            href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&family=Rammetto+One&family=Open+Sans&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&family=Rammetto+One&display=swap"
             rel="stylesheet"
           />
           <link rel="icon" href="/favicon.ico" />
