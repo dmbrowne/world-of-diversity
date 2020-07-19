@@ -1,10 +1,8 @@
 import React, { FC, useMemo, useContext } from "react";
 import { rgba } from "polished";
-import { Box, Button, Text, ResponsiveContext } from "grommet";
+import { Box, ResponsiveContext } from "grommet";
 import { useTheme } from "styled-components";
-import { Shop } from "grommet-icons";
 import ContentContainer from "@components/content-container";
-import { SAnchor } from "./navbar.styled";
 import SideNav from "@components/side-nav";
 import TextLogoIcon from "./text-logo";
 import MenuItems from "./menu-items";

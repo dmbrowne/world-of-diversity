@@ -1,7 +1,7 @@
 import { Anchor, Text } from "grommet";
 import styled from "styled-components";
 
-export const SAnchor = styled(Anchor).attrs((props) => ({
+export const SLinkText = styled(Text).attrs((props) => ({
   color: "dark-1",
   margin: props.margin || { horizontal: "medium" },
 }))`
