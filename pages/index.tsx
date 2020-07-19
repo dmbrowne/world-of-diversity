@@ -95,7 +95,7 @@ interface Props {
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: "'Londrina Solid', Roboto, sans-serif",
+    fontFamily: "'Londrina Solid', sans-serif",
   },
 });
 
