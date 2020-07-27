@@ -1,12 +1,14 @@
 import React from "react";
-import { Logo } from "./navbar.styled";
+import { Logo, Anchor } from "./navbar.styled";
 import Link from "next/link";
 
 const TextLogoIcon = () => {
   return (
     <div className="text-logo">
       <Link href="/">
-        <Logo>World of diversity</Logo>
+        <Anchor>
+          <Logo>World of diversity</Logo>
+        </Anchor>
       </Link>
       <style jsx global>{`
         .text-logo a:hover {

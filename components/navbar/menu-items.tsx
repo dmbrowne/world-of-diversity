@@ -1,6 +1,6 @@
 import React, { useContext, FC } from "react";
 import Link from "next/link";
-import { SLinkText } from "./navbar.styled";
+import { SLinkText, Anchor } from "./navbar.styled";
 import { Button, Text, ResponsiveContext, Box } from "grommet";
 import { Shop } from "grommet-icons";
 
@@ -12,10 +12,10 @@ const MenuItems: FC<{ onViewCart?: () => any }> = ({ onViewCart }) => {
   return (
     <>
       <Link href="/about">
-        <SLinkText color="dark-1" children="About" margin={margin} />
+        <Anchor children={<SLinkText color="dark-1" children="About" margin={margin} />} />
       </Link>
       <Link href="/bookstore">
-        <SLinkText color="dark-1" children="Books" margin={margin} />
+        <Anchor children={<SLinkText color="dark-1" children="Books" margin={margin} />} />
       </Link>
       <Button plain className="snipcart-checkout" fill="horizontal" margin={cartItemMargin} onClick={onViewCart}>
         <Box direction="row" justify="between">

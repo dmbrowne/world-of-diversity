@@ -1,5 +1,11 @@
-import { Anchor, Text } from "grommet";
+import React from "react";
+import { Text } from "grommet";
 import styled from "styled-components";
+
+export const Anchor = styled.a`
+  text-decoration: none;
+  cursor: pointer;
+`;
 
 export const SLinkText = styled(Text).attrs((props) => ({
   color: "dark-1",
@@ -9,7 +15,7 @@ export const SLinkText = styled(Text).attrs((props) => ({
   font-size: 1.125rem;
 `;
 
-export const Logo = styled(Text)`
+const TextLogo = styled(Text)`
   font-family: "Rammetto One";
   color: #fff;
 
@@ -18,3 +24,5 @@ export const Logo = styled(Text)`
     -webkit-text-fill-color: #fff;
   }
 `;
+
+export const Logo = React.forwardRef((props: any, ref) => <TextLogo {...props} ref={ref} />);
