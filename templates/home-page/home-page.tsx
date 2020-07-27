@@ -1,5 +1,5 @@
-import React, { FC, useContext, useMemo, Ref } from "react";
-import { Main, Box, Heading, ResponsiveContext, Paragraph, Button } from "grommet";
+import React, { FC, useContext, useMemo, Ref, useState } from "react";
+import { Main, Box, Heading, ResponsiveContext, Paragraph, Text } from "grommet";
 import { ResponsiveImageType, Image as DatoImage } from "react-datocms";
 import Color from "color";
 import { TextField } from "@material-ui/core";
@@ -14,6 +14,7 @@ import {
   SSectionHeading,
   DatoImageContainer,
 } from "./home-page.styled";
+import MailingListForm from "@components/mailing-list-form";
 
 interface IImage
   extends Partial<{
@@ -45,6 +46,7 @@ interface HomePageProps {
 }
 
 const HomePage: FC<HomePageProps> = (props) => {
+  const [hasSignedUp, setHasSignedUp] = useState(false);
   const screensize = useContext(ResponsiveContext);
   const isMobile = screensize === "small";
   const HeroHeading = isMobile ? SMobileHeroHeading : SHeroHeading;
@@ -61,11 +63,7 @@ const HomePage: FC<HomePageProps> = (props) => {
   const showIntroSection = props.title || props.websiteDescription;
   const showFactSection = props.factHeadline || props.factFigure || props.factDetails;
   const showServices = props.services && props.services.length > 0;
-  const factTextColor = props.factBackgroundColor
-    ? Color(props.factBackgroundColor).isDark()
-      ? "light-1"
-      : "dark-1"
-    : "dark-1";
+  const factTextColor = props.factBackgroundColor ? (Color(props.factBackgroundColor).isDark() ? "light-1" : "dark-1") : "dark-1";
 
   return (
     <Main>
@@ -117,14 +115,14 @@ const HomePage: FC<HomePageProps> = (props) => {
       <Section background="white">
         <ContentContainer>
           <SSectionHeading level={2} children={props.mailingListCtaTitle} />
-          <Paragraph margin={{ top: "none" }} fill textAlign="center" children={props.mailingListDescription} />
-          <Box direction="row" gap="medium" margin={{ vertical: "medium" }}>
-            <TextField style={{ flex: "1 1 auto" }} variant="outlined" label="Name" required />
-            <TextField style={{ flex: "1 1 auto" }} variant="outlined" label="Email" type="email" required />
-          </Box>
-          <Box round={{ size: "6px" }} elevation="small" alignSelf="center">
-            <Button primary label="Join" />
-          </Box>
+          {hasSignedUp ? (
+            <Text textAlign="center" color="accent-2" children="Your details have been sent, thanks for signing up!" />
+          ) : (
+            <>
+              <Paragraph margin={{ top: "none" }} fill textAlign="center" children={props.mailingListDescription} />
+              <MailingListForm onSubmitSuccess={() => setHasSignedUp(true)} />
+            </>
+          )}
         </ContentContainer>
       </Section>
     </Main>
