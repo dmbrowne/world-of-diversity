@@ -11,7 +11,7 @@ const BOOKS_QUERY = `query BooksListingQuery {
   }
   allBooks(first: "8") {
     price
-    stock
+    isOutOfStock
     title
     excerpt
     id
@@ -42,7 +42,7 @@ interface Props {
     allBooks: {
       id: string;
       price: number;
-      stock: number;
+      isOutOfStock: boolean;
       title: string;
       excerpt: string;
       frontCover: {
