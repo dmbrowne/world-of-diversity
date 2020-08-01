@@ -14,6 +14,7 @@ interface Props {
     price: number;
     title: string;
     excerpt: string;
+    isOutOfStock: boolean;
     frontCover: {
       url: string;
       responsiveImage: ResponsiveImageType;
@@ -74,6 +75,7 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
             "data-item-name": book.title,
             "data-item-description": book.excerpt,
             "data-item-image": book.frontCover?.url,
+            ...(book.isOutOfStock ? { "data-item-max-quantity": 0 } : {}),
           };
           return (
             <Box
@@ -87,14 +89,30 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
                 {book?.frontCover?.responsiveImage && <DatoImage data={book.frontCover.responsiveImage} />}
               </SBookCoverContainer>
               <Box>
-                <Heading as="header" level={3} size="small" color="neutral-4" children={book.title} />
+                <Heading as="header" level={3} size="small" color="neutral-2" children={book.title} />
                 <Paragraph children={book.excerpt} />
-                <Box direction="row" gap="xsmall" align="center" margin={{ bottom: "xsmall" }}>
+                <Box direction="row" gap="xsmall" align="center">
                   <Text children="Price:" size="small" />
                   <Text color="neutral-1" children={`£${book.price.toFixed(2)}`} />
                 </Box>
-                <Box round={{ size: "xsmall" }} elevation="small" alignSelf="start" width={{ min: "250px" }}>
-                  <Button className="snipcart-add-item" {...buyDetails} fill={true} children="Purchase" primary />
+                <Box height="32px" margin={{ top: "xsmall", bottom: "small" }}>
+                  {book.isOutOfStock && (
+                    <Box round={{ size: "xxsmall" }} background="neutral-4" pad="xsmall" alignSelf="start">
+                      <Text weight="bold" size="small">
+                        Out of stock
+                      </Text>
+                    </Box>
+                  )}
+                </Box>
+                <Box round={{ size: "xsmall" }} elevation="small" width="250px">
+                  <Button
+                    disabled={book.isOutOfStock}
+                    className="snipcart-add-item"
+                    {...buyDetails}
+                    fill={true}
+                    label="Purchase"
+                    primary
+                  />
                 </Box>
               </Box>
             </Box>
