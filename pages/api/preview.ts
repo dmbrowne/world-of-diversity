@@ -1,9 +1,9 @@
 // A simple example for testing it manually from your browser.
 // If this is located at pages/api/preview.js, then
 // open /api/preview from your browser.
-import { NowRequest, NowResponse } from "@vercel/node";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default (req: NowRequest, res: NowResponse) => {
+export default (req: NextApiRequest, res: NextApiResponse) => {
   // Check the secret and next parameters
   // This secret should only be known to this API route and the CMS
   if (req.query.secret !== process.env.DATOCMS_PREVIEW_SECRET) {

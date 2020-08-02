@@ -1,6 +1,6 @@
-import { NowResponse } from "@vercel/node";
+import { NextApiResponse } from "next";
 
-export default async function exit(_: any, res: NowResponse) {
+export default async function exit(_: any, res: NextApiResponse) {
   // Exit the current user from "Preview Mode". This function accepts no args.
   res.clearPreviewData();
 
