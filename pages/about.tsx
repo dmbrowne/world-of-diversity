@@ -96,7 +96,7 @@ const About: FC<Props> = ({ data: { aboutMe } }) => {
 export const getStaticProps = async (context: GetStaticPropsContext) => ({
   props: {
     data: await datoCMSRequest({ ...context, query: ABOUT_QUERY }),
-    isPreview: context.preview,
+    isPreview: !!context.preview,
   },
 });
 

@@ -68,7 +68,7 @@ const BooksStore: FC<Props> = ({ data }) => {
 export const getStaticProps = async (context: GetStaticPropsContext) => ({
   props: {
     data: await datoCMSRequest({ ...context, query: BOOKS_QUERY }),
-    isPreview: true,
+    isPreview: !!context.preview,
   },
 });
 

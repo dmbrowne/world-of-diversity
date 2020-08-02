@@ -132,7 +132,7 @@ const Home: FC<Props> = ({ data: { homepage } }) => {
 export const getStaticProps = async (context: GetStaticPropsContext) => ({
   props: {
     data: await datoCMSRequest({ ...context, query: HOMEPAGE_QUERY }),
-    isPreview: context.preview,
+    isPreview: !!context.preview,
   },
 });
 
