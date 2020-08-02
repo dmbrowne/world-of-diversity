@@ -4,6 +4,7 @@ import Head from "next/head";
 import DefaultLayout from "@layouts/defaultLayout";
 import AboutPage from "@templates/about-page";
 import { datoCMSRequest } from "@utils/dato-cms";
+import { GetStaticPropsContext } from "next";
 
 const ABOUT_QUERY = `
   query AboutTheAuthorQuery {
@@ -92,9 +93,10 @@ const About: FC<Props> = ({ data: { aboutMe } }) => {
   );
 };
 
-export const getStaticProps = async () => ({
+export const getStaticProps = async (context: GetStaticPropsContext) => ({
   props: {
-    data: await datoCMSRequest({ query: ABOUT_QUERY }),
+    data: await datoCMSRequest({ ...context, query: ABOUT_QUERY }),
+    isPreview: context.preview,
   },
 });
 

@@ -4,6 +4,7 @@ import { createMuiTheme, ThemeProvider as MaterialThemeProvider } from "@materia
 import { datoCMSRequest } from "@utils/dato-cms";
 import HomePage from "@templates/home-page/home-page";
 import TransparentHeaderLayout from "@layouts/transparent-header";
+import { GetStaticPropsContext } from "next";
 
 const HOMEPAGE_QUERY = `query HomePageQuery {
   homepage {
@@ -128,9 +129,10 @@ const Home: FC<Props> = ({ data: { homepage } }) => {
   );
 };
 
-export const getStaticProps = async () => ({
+export const getStaticProps = async (context: GetStaticPropsContext) => ({
   props: {
-    data: await datoCMSRequest({ query: HOMEPAGE_QUERY }),
+    data: await datoCMSRequest({ ...context, query: HOMEPAGE_QUERY }),
+    isPreview: context.preview,
   },
 });
 
