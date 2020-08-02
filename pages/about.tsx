@@ -50,6 +50,7 @@ const ABOUT_QUERY = `
 `;
 
 interface Props {
+  isPreview: boolean;
   data: {
     aboutMe: {
       title: string;
@@ -72,10 +73,10 @@ interface Props {
   };
 }
 
-const About: FC<Props> = ({ data: { aboutMe } }) => {
+const About: FC<Props> = ({ data: { aboutMe }, isPreview }) => {
   const authorQuote = aboutMe.authorQuote && aboutMe.authorQuote.length > 0 ? aboutMe.authorQuote[0] : undefined;
   return (
-    <DefaultLayout>
+    <DefaultLayout showPreviewNav={isPreview}>
       <Head>
         <link
           rel="stylesheet"

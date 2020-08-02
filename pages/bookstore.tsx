@@ -35,6 +35,7 @@ const BOOKS_QUERY = `query BooksListingQuery {
 }`;
 
 interface Props {
+  isPreview: boolean;
   data: {
     booksPage: {
       title: string;
@@ -54,12 +55,12 @@ interface Props {
   };
 }
 
-const BooksStore: FC<Props> = ({ data }) => {
+const BooksStore: FC<Props> = ({ data, isPreview }) => {
   const title = data?.booksPage?.title;
   const subtitle = data?.booksPage?.subtitle;
 
   return (
-    <DefaultLayout>
+    <DefaultLayout showPreviewNav={isPreview}>
       <BooksListingPage title={title} subtitle={subtitle} books={data.allBooks} />
     </DefaultLayout>
   );

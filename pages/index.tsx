@@ -71,6 +71,7 @@ type ImageType = {
 };
 
 interface Props {
+  isPreview: boolean;
   data: {
     homepage: {
       title: string;
@@ -100,7 +101,7 @@ const theme = createMuiTheme({
   },
 });
 
-const Home: FC<Props> = ({ data: { homepage } }) => {
+const Home: FC<Props> = ({ data: { homepage }, isPreview }) => {
   const heroSectionRef = useRef<HTMLElement>();
   const [menuTransparency, setMenuTransparency] = useState(0);
 
@@ -121,7 +122,7 @@ const Home: FC<Props> = ({ data: { homepage } }) => {
   }, []);
 
   return (
-    <TransparentHeaderLayout menuTransparency={menuTransparency}>
+    <TransparentHeaderLayout menuTransparency={menuTransparency} showPreviewNav={isPreview}>
       <MaterialThemeProvider theme={theme}>
         <HomePage {...homepage} heroSectionRef={heroSectionRef} services={homepage.services || []} />
       </MaterialThemeProvider>
