@@ -36,6 +36,13 @@ export default class MyDocument extends Document {
         <Head />
         <body>
           <Main />
+          <div
+            hidden
+            id="snipcart"
+            data-api-key={process.env.NEXT_PUBLIC_SNIPCART_API_KEY}
+            data-config-add-product-behavior="none"
+          />
+          <script src="https://cdn.snipcart.com/themes/v3.0.17/default/snipcart.js" />
           <NextScript />
         </body>
       </Html>

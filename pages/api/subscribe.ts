@@ -1,15 +1,18 @@
-import { NowRequest, NowResponse } from "@vercel/node";
+import { NextApiRequest, NextApiResponse } from "next";
 import MD5 from "crypto-js/md5";
 
 const defaultMailchimpListId = "195eda857f";
 
 const checkUserSubscription = async (userID: string, { auth }: { auth: string }) => {
   try {
-    const { status, ok } = await fetch(process.env.MAILCHIMP_API_URL + `/3.0/lists/${defaultMailchimpListId}/members/${userID}`, {
-      headers: new Headers({
-        Authorization: auth,
-      }),
-    });
+    const { status, ok } = await fetch(
+      process.env.MAILCHIMP_API_URL + `/3.0/lists/${defaultMailchimpListId}/members/${userID}`,
+      {
+        headers: new Headers({
+          Authorization: auth,
+        }),
+      }
+    );
     console.log({ status });
     return !!ok;
   } catch (e) {
@@ -17,7 +20,7 @@ const checkUserSubscription = async (userID: string, { auth }: { auth: string })
   }
 };
 
-export default async function (req: NowRequest, res: NowResponse) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
   const userId = MD5((req.body.email as string).toLowerCase()).toString();
   const basicAuth = `Basic ${Buffer.from(`apikey:${process.env.MAILCHIMP_API_KEY}`, "utf-8").toString("base64")}`;
   const isExistingUser = await checkUserSubscription(userId, { auth: basicAuth });

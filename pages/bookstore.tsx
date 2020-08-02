@@ -3,6 +3,7 @@ import { ResponsiveImageType } from "react-datocms";
 import DefaultLayout from "@layouts/defaultLayout";
 import BooksListingPage from "@templates/books-listing-page";
 import { datoCMSRequest } from "@utils/dato-cms";
+import { GetStaticPropsContext } from "next";
 
 const BOOKS_QUERY = `query BooksListingQuery {
   booksPage {
@@ -64,9 +65,10 @@ const BooksStore: FC<Props> = ({ data }) => {
   );
 };
 
-export const getStaticProps = async () => ({
+export const getStaticProps = async (context: GetStaticPropsContext) => ({
   props: {
-    data: await datoCMSRequest({ query: BOOKS_QUERY }),
+    data: await datoCMSRequest({ ...context, query: BOOKS_QUERY }),
+    isPreview: !!context.preview,
   },
 });
 

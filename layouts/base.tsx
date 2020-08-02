@@ -21,13 +21,6 @@ export const BaseLayout: FC<{ title: string }> = ({ children, title }) => {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         {children}
-        <div
-          hidden
-          id="snipcart"
-          data-api-key={process.env.NEXT_PUBLIC_SNIPCART_API_KEY}
-          data-config-add-product-behavior="none"
-        />
-        <script src="https://cdn.snipcart.com/themes/v3.0.17/default/snipcart.js" />
       </Grommet>
       <style jsx global>{`
         html,
