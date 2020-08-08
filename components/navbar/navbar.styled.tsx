@@ -20,7 +20,7 @@ const TextLogo = styled(Text)`
   color: #fff;
 
   @supports (-webkit-text-stroke: 1px black) {
-    -webkit-text-stroke: 1px ${(props) => props.theme?.global?.colors?.["neutral-4"]?.toString()};
+    -webkit-text-stroke: 1px #000;
     -webkit-text-fill-color: #fff;
   }
 `;
