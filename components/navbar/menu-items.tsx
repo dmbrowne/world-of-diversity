@@ -12,12 +12,19 @@ const MenuItems: FC<{ onViewCart?: () => any }> = ({ onViewCart }) => {
   return (
     <>
       <Link href="/about">
-        <Anchor children={<SLinkText color="dark-1" children="About" margin={margin} />} />
+        <Anchor children={<SLinkText color="dark-1" children="About the author" margin={margin} />} />
       </Link>
       <Link href="/bookstore">
         <Anchor children={<SLinkText color="dark-1" children="Books" margin={margin} />} />
       </Link>
-      <Button plain className="snipcart-checkout" fill="horizontal" margin={cartItemMargin} onClick={onViewCart}>
+      <Button
+        plain
+        className="snipcart-checkout"
+        fill="horizontal"
+        margin={cartItemMargin}
+        onClick={onViewCart}
+        style={{ width: "auto" }}
+      >
         <Box direction="row" justify="between">
           {isTabletAndSmaller && <Text>Cart</Text>}
           <Box direction="row" align="center">
