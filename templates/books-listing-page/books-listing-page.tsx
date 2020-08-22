@@ -15,6 +15,7 @@ interface Props {
     title: string;
     excerpt: string;
     isOutOfStock: boolean;
+    weight?: number;
     frontCover: {
       url: string;
       responsiveImage: ResponsiveImageType;
@@ -75,6 +76,7 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
             "data-item-name": book.title,
             "data-item-description": book.excerpt,
             "data-item-image": book.frontCover?.url,
+            ...(!!book.weight ? { "data-item-weight": book.weight } : {}),
             ...(book.isOutOfStock ? { "data-item-max-quantity": 0 } : {}),
           };
           return (
