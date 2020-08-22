@@ -71,7 +71,7 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
           const buyDetails = {
             "data-item-id": book.id,
             "data-item-price": book.price,
-            "data-item-url": "/",
+            "data-item-url": `${process.env.NEXT_PUBLIC_BOOKSTORE_URL}`,
             "data-item-name": book.title,
             "data-item-description": book.excerpt,
             "data-item-image": book.frontCover?.url,
