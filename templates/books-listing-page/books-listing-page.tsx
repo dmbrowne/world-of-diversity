@@ -104,6 +104,7 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
                   <Button
                     disabled={book.isOutOfStock}
                     className="snipcart-add-item"
+                    id={book.id}
                     {...buyDetails}
                     fill={true}
                     label="Purchase"
