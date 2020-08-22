@@ -33,7 +33,6 @@ export const SHeroHeading = styled(SMobileHeroHeading)`
   left: 24px;
   position: absolute;
   z-index: 2;
-  max-width: 400px;
   margin-top: 0;
 `;
 
