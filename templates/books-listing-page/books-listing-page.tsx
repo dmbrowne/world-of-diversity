@@ -48,14 +48,8 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
   useEffect(() => {
     const { Snipcart } = window as any;
     Snipcart.ready.then(() => {
-      Snipcart.events.on("item.added", (cartItem: any) => {
-        console.log(cartItem);
-        setShowCartAdded(`"${cartItem.name}" added to cart`);
-      });
-      Snipcart.events.on("item.updated", (cartItem: any) => {
-        console.log("helllo");
-        setShowCartAdded("Cart updated");
-      });
+      Snipcart.events.on("item.added", (cartItem: any) => setShowCartAdded(`"${cartItem.name}" added to cart`));
+      Snipcart.events.on("item.updated", (cartItem: any) => setShowCartAdded("Cart updated"));
     });
   }, []);
 

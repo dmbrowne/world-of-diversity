@@ -5,15 +5,12 @@ const defaultMailchimpListId = "195eda857f";
 
 const checkUserSubscription = async (userID: string, { auth }: { auth: string }) => {
   try {
-    const { status, ok } = await fetch(
+    const { ok } = await fetch(
       process.env.MAILCHIMP_API_URL + `/3.0/lists/${defaultMailchimpListId}/members/${userID}`,
       {
-        headers: new Headers({
-          Authorization: auth,
-        }),
+        headers: new Headers({ Authorization: auth }),
       }
     );
-    console.log({ status });
     return !!ok;
   } catch (e) {
     return false;
