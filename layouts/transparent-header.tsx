@@ -3,6 +3,13 @@ import styled from "styled-components";
 import Navbar from "@components/navbar";
 import Footer from "@components/footer";
 import BaseLayout from "./base";
+import { SocialMediaLinks } from "@components/footer/footer";
+
+interface Props {
+  menuTransparency?: number;
+  showPreviewNav?: boolean;
+  socialMediaLinks: SocialMediaLinks;
+}
 
 const SFixedContainer = styled.div<{ offsetTop: number }>`
   position: fixed;
@@ -12,11 +19,7 @@ const SFixedContainer = styled.div<{ offsetTop: number }>`
   z-index: 10;
 `;
 
-const TransparentHeaderLayout: FC<{ menuTransparency?: number; showPreviewNav?: boolean }> = ({
-  children,
-  menuTransparency = 0,
-  showPreviewNav,
-}) => {
+const TransparentHeaderLayout: FC<Props> = ({ children, menuTransparency = 0, showPreviewNav, socialMediaLinks }) => {
   return (
     <BaseLayout title="Welcome to diversity" showPreviewNav={showPreviewNav}>
       <div className="container" style={{ minHeight: "100vh" }}>
@@ -24,7 +27,7 @@ const TransparentHeaderLayout: FC<{ menuTransparency?: number; showPreviewNav?: 
           <Navbar transparency={menuTransparency} />
         </SFixedContainer>
         {children}
-        <Footer />
+        <Footer socialMediaLinks={socialMediaLinks} />
       </div>
     </BaseLayout>
   );

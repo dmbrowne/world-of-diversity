@@ -1,52 +1,19 @@
 import { FC, useRef, useEffect, useState } from "react";
 import { ResponsiveImageType } from "react-datocms";
+import { GetStaticPropsContext } from "next";
 import { createMuiTheme, ThemeProvider as MaterialThemeProvider } from "@material-ui/core";
 import { datoCMSRequest } from "@utils/dato-cms";
 import HomePage from "@templates/home-page/home-page";
 import TransparentHeaderLayout from "@layouts/transparent-header";
-import { GetStaticPropsContext } from "next";
+import { PagePropsWithSocialMedia } from "../@types/page";
 
-const HOMEPAGE_QUERY = `query HomePageQuery {
-  homepage {
-    headline
-    title
-    websiteDescription
-    coverImage {
-      responsiveImage {
-        webpSrcSet
-        srcSet
-        sizes
-        src
-        width
-        height
-        aspectRatio
-        alt
-        title
-        base64
-      }
-    }
-    factHeadline
-    factDetails
-    factFigure {
-      responsiveImage {
-        webpSrcSet
-        srcSet
-        sizes
-        src
-        width
-        height
-        aspectRatio
-        alt
-        title
-        base64
-      }
-    }
-    servicesHeadline
-    services {
-      id
-      header
-      shortDescription
-      image {
+const HOMEPAGE_QUERY = `
+  query HomePageQuery {
+    homepage {
+      headline
+      title
+      websiteDescription
+      coverImage {
         responsiveImage {
           webpSrcSet
           srcSet
@@ -60,38 +27,72 @@ const HOMEPAGE_QUERY = `query HomePageQuery {
           base64
         }
       }
+      factHeadline
+      factDetails
+      factFigure {
+        responsiveImage {
+          webpSrcSet
+          srcSet
+          sizes
+          src
+          width
+          height
+          aspectRatio
+          alt
+          title
+          base64
+        }
+      }
+      servicesHeadline
+      services {
+        id
+        header
+        shortDescription
+        image {
+          responsiveImage {
+            webpSrcSet
+            srcSet
+            sizes
+            src
+            width
+            height
+            aspectRatio
+            alt
+            title
+            base64
+          }
+        }
+      }
+      mailingListCtaTitle
+      mailingListDescription
     }
-    mailingListCtaTitle
-    mailingListDescription
+    ...SocialMedia
   }
-}`;
+`;
 
 type ImageType = {
   responsiveImage: ResponsiveImageType;
 };
 
 interface Props {
-  isPreview: boolean;
-  data: {
-    homepage: {
-      title: string;
-      websiteDescription?: string;
-      coverImage: ImageType;
-      factHeadline?: string;
-      factDetails?: string;
-      factFigure: ImageType;
-      servicesHeadline?: string;
-      services?: [
-        {
-          id: string;
-          header: string;
-          shortDescription?: string;
-          image?: ImageType;
-        }
-      ];
-      mailingListCtaTitle?: string;
-      mailingListDescription?: string;
-    };
+  homepage: {
+    title: string;
+    websiteDescription?: string;
+    coverImage: ImageType;
+    factHeadline?: string;
+    factDetails?: string;
+    factFigure: ImageType;
+    servicesHeadline?: string;
+    services?: [
+      {
+        id: string;
+        header: string;
+        shortDescription?: string;
+        image?: ImageType;
+      }
+    ];
+    mailingListCtaTitle?: string;
+    mailingListDescription?: string;
   };
 }
 
@@ -101,7 +102,7 @@ const theme = createMuiTheme({
   },
 });
 
-const Home: FC<Props> = ({ data: { homepage }, isPreview }) => {
+const Home: FC<PagePropsWithSocialMedia<Props>> = ({ data: { homepage, socialMedia }, isPreview }) => {
   const heroSectionRef = useRef<HTMLElement>();
   const [menuTransparency, setMenuTransparency] = useState(0);
 
@@ -122,7 +123,11 @@ const Home: FC<Props> = ({ data: { homepage }, isPreview }) => {
   }, []);
 
   return (
-    <TransparentHeaderLayout menuTransparency={menuTransparency} showPreviewNav={isPreview}>
+    <TransparentHeaderLayout
+      menuTransparency={menuTransparency}
+      showPreviewNav={isPreview}
+      socialMediaLinks={socialMedia}
+    >
       <MaterialThemeProvider theme={theme}>
         <HomePage {...homepage} heroSectionRef={heroSectionRef} services={homepage.services || []} />
       </MaterialThemeProvider>

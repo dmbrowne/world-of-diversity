@@ -1,9 +1,38 @@
-import React, { useContext } from "react";
-import { Box, ResponsiveContext, Text } from "grommet";
+import React, { useContext, FC } from "react";
+import { Box, ResponsiveContext, Text, Anchor } from "grommet";
 import ContentContainer from "@components/content-container";
-import { Twitter, Instagram, Facebook } from "grommet-icons";
+import { Twitter, Instagram, Facebook, FacebookOption, Pinterest, Linkedin, Youtube } from "grommet-icons";
+import Link from "next/link";
 
-const Footer = () => {
+export interface SocialMediaLinks {
+  facebook?: string;
+  twitter?: string;
+  instagram?: string;
+  pinterest?: string;
+  youtube?: string;
+  linkedin?: string;
+}
+
+const getSocialMediaComponent = (socialPlatform: keyof SocialMediaLinks | string) => {
+  switch (socialPlatform) {
+    case "facebook":
+      return Facebook;
+    case "twitter":
+      return Twitter;
+    case "instagram":
+      return Instagram;
+    case "pinterest":
+      return Pinterest;
+    case "linkedin":
+      return Linkedin;
+    case "youtube":
+      return Youtube;
+    default:
+      return null;
+  }
+};
+
+const Footer: FC<{ socialMediaLinks: SocialMediaLinks }> = ({ socialMediaLinks }) => {
   const isMobile = useContext(ResponsiveContext) === "small";
 
   return (
@@ -25,9 +54,14 @@ const Footer = () => {
           ))}
         </Box>
         <Box direction="row" gap="small" margin={isMobile ? { top: "large", bottom: "medium" } : undefined}>
-          <Twitter size="16px" color="white" />
-          <Instagram size="16px" color="white" />
-          <Facebook size="16px" color="white" />
+          {Object.entries(socialMediaLinks).map(([key, url]) => {
+            const SocialMediaComponent = getSocialMediaComponent(key);
+            return !!SocialMediaComponent && !!url ? (
+              <Anchor href={url} key={key} target="_blank">
+                <SocialMediaComponent size="16px" color="white" />
+              </Anchor>
+            ) : null;
+          })}
         </Box>
       </ContentContainer>
     </Box>

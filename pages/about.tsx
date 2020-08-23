@@ -5,6 +5,7 @@ import DefaultLayout from "@layouts/defaultLayout";
 import AboutPage from "@templates/about-page";
 import { datoCMSRequest } from "@utils/dato-cms";
 import { GetStaticPropsContext } from "next";
+import { PagePropsWithSocialMedia } from "../@types/page";
 
 const ABOUT_QUERY = `
   query AboutTheAuthorQuery {
@@ -46,37 +47,35 @@ const ABOUT_QUERY = `
         }
       }
     }
+    ...SocialMedia
   }
 `;
 
 interface Props {
-  isPreview: boolean;
-  data: {
-    aboutMe: {
-      title: string;
-      subtitle?: string;
-      intro?: string;
-      content?: string;
-      authorQuote?: [
-        {
-          quote: string;
-          image: {
-            responsiveImage: ResponsiveImageType;
-          };
-        }
-      ];
-      authorGallery?: {
-        id: string;
-        responsiveImage: ResponsiveImageType;
-      }[];
-    };
+  aboutMe: {
+    title: string;
+    subtitle?: string;
+    intro?: string;
+    content?: string;
+    authorQuote?: [
+      {
+        quote: string;
+        image: {
+          responsiveImage: ResponsiveImageType;
+        };
+      }
+    ];
+    authorGallery?: {
+      id: string;
+      responsiveImage: ResponsiveImageType;
+    }[];
   };
 }
 
-const About: FC<Props> = ({ data: { aboutMe }, isPreview }) => {
+const About: FC<PagePropsWithSocialMedia<Props>> = ({ data: { aboutMe, socialMedia }, isPreview }) => {
   const authorQuote = aboutMe.authorQuote && aboutMe.authorQuote.length > 0 ? aboutMe.authorQuote[0] : undefined;
   return (
-    <DefaultLayout showPreviewNav={isPreview}>
+    <DefaultLayout showPreviewNav={isPreview} socialMediaLinks={socialMedia}>
       <Head>
         <link
           rel="stylesheet"
