@@ -15,6 +15,7 @@ interface Props {
     title: string;
     excerpt: string;
     isOutOfStock: boolean;
+    weight?: number;
     frontCover: {
       url: string;
       responsiveImage: ResponsiveImageType;
@@ -47,14 +48,8 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
   useEffect(() => {
     const { Snipcart } = window as any;
     Snipcart.ready.then(() => {
-      Snipcart.events.on("item.added", (cartItem: any) => {
-        console.log(cartItem);
-        setShowCartAdded(`"${cartItem.name}" added to cart`);
-      });
-      Snipcart.events.on("item.updated", (cartItem: any) => {
-        console.log("helllo");
-        setShowCartAdded("Cart updated");
-      });
+      Snipcart.events.on("item.added", (cartItem: any) => setShowCartAdded(`"${cartItem.name}" added to cart`));
+      Snipcart.events.on("item.updated", (cartItem: any) => setShowCartAdded("Cart updated"));
     });
   }, []);
 
@@ -71,10 +66,11 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
           const buyDetails = {
             "data-item-id": book.id,
             "data-item-price": book.price,
-            "data-item-url": "/",
+            "data-item-url": `${process.env.NEXT_PUBLIC_BOOKSTORE_URL}`,
             "data-item-name": book.title,
             "data-item-description": book.excerpt,
             "data-item-image": book.frontCover?.url,
+            ...(!!book.weight ? { "data-item-weight": book.weight } : {}),
             ...(book.isOutOfStock ? { "data-item-max-quantity": 0 } : {}),
           };
           return (
@@ -108,6 +104,7 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
                   <Button
                     disabled={book.isOutOfStock}
                     className="snipcart-add-item"
+                    id={book.id}
                     {...buyDetails}
                     fill={true}
                     label="Purchase"

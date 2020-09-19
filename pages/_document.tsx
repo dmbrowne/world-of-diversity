@@ -41,6 +41,7 @@ export default class MyDocument extends Document {
             id="snipcart"
             data-api-key={process.env.NEXT_PUBLIC_SNIPCART_API_KEY}
             data-config-add-product-behavior="none"
+            data-currency="gbp"
           />
           <script src="https://cdn.snipcart.com/themes/v3.0.17/default/snipcart.js" />
           <NextScript />
