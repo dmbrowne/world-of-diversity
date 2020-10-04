@@ -19,7 +19,7 @@ const BOOKS_QUERY = `query BooksListingQuery {
     id
     frontCover {
       url
-      responsiveImage(imgixParams: {fit: crop, w: "200", h: "290"}) {
+      responsiveImage(imgixParams: {fit: crop, h: "290"}) {
         webpSrcSet
         srcSet
         sizes
