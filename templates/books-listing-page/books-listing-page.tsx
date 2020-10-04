@@ -24,8 +24,6 @@ interface Props {
 }
 
 const SBookCoverContainer = styled(Box)`
-  height: 290px;
-  width: 200px;
   flex-shrink: 0;
   border: 2px solid ${(props) => props.theme.global?.colors?.["light-6"]?.toString()};
 `;
@@ -80,6 +78,7 @@ const BooksListingPage: FC<Props> = ({ books, title, subtitle }) => {
               as="article"
               gap="small"
               margin={{ top: "small", bottom: "medium" }}
+              align="start"
             >
               <SBookCoverContainer>
                 {book?.frontCover?.responsiveImage && <DatoImage data={book.frontCover.responsiveImage} />}
